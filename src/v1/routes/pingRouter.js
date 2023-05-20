@@ -4,8 +4,7 @@ const http = require('http');
 const router = express.Router();
 const PORT = process.env.PORT || 1337;
 
-const interval = 600 //10 Minutes
-console.log(`User Interval : ${interval/60}`)
+const interval = process.env.INTERVAL || 600 //10 Minutes
 
 router.get("/", (req, res) => {
   res.send("Ping response: OK");
@@ -13,7 +12,7 @@ router.get("/", (req, res) => {
 
 setInterval(() => {
     http.get(`http://localhost:${PORT}/ping`, (resp) => {
-        console.log('Ping response status:', resp.statusCode);
+        console.log(`Ping: http://localhost:${PORT}/ping, Status: `, resp.statusCode);
     }).on("error", (err) => {
         console.log("Error: " + err.message);
     });

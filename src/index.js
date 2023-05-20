@@ -9,9 +9,6 @@ const { swaggerDocs: V1SwaggerDocs } = require("./v1/swagger");
 const app = express(); 
 // const cache = apicache.middleware;
 const PORT = process.env.PORT || 1337; 
-console.log(`Sever Port: ${process.env.PORT}`);
-console.log(`Server Interval: ${process.env.INTERVAL}`)
-
 
 app.use(bodyParser.json());
 // app.use(cache("2 minutes"));
