@@ -1,0 +1,83 @@
+openapi: 3.0.0
+info:
+    title: SNAPINBOX API
+    description: Official API for SNAPINBOX Instant Gmail generator
+    version: 1.0.0
+
+paths:
+    /api/v1/workouts:
+        get:
+            summary: Returns a list of workouts
+            description: Retrieves a list of workouts based on the provided mode parameter
+            tags:
+                - Workouts
+            parameters:
+                - in: query
+                  name: mode
+                  schema:
+                      type: string
+                  description: The mode of a workout
+            responses:
+                "200":
+                    description: OK
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        name:
+                                            type: string
+                                            example: "Push-ups"
+                                        duration:
+                                            type: integer
+                                            example: 25
+                "5XX":
+                    description: FAILED
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    status:
+                                        type: string
+                                        example: FAILED
+                                    data:
+                                        type: object
+                                        properties:
+                                            error:
+                                                type: string
+                                                example: "Some error message"
+    /api/v1/workouts/{workoutId}:
+        get:
+            summary: Returns a workout by ID.
+            description: Returns a workout based on the id provided.
+            tags:
+                - Workouts
+            parameters:
+                - name: workoutId
+                  in: path
+                  required: true
+                  description: Eg - d8be2362-7b68-4ea4-a1f6-03f8bc4eede7
+                  schema:
+                      type: string
+            responses:
+                "200":
+                    description: OK
+    /api/v1/workouts/{workoutId}/records:
+        get:
+            summary: Returns records of workout by ID.
+            description: Returns workout records based on the id provided.
+            tags:
+                - Workouts
+            parameters:
+                - name: workoutId
+                  in: path
+                  required: true
+                  description: Eg - d8be2362-7b68-4ea4-a1f6-03f8bc4eede7
+                  schema:
+                      type: string
+            responses:
+                "200":
+                    description: OK
