@@ -1,8 +1,8 @@
 const express = require("express"); 
 const bodyParser = require("body-parser");
-const v1WorkoutRouter = require("./v1/routes/workoutRoutes");
-const v1PingRouter = require("./v1/routes/pingRouter.js");
-const swaggerDocs = require('./v1/docs/swagger.js');
+const v1WorkoutRouter = require("./api/v1/routes/workoutRoutes.js");
+const v1PingRouter = require("./api/v1/routes/pingRouter.js");
+const swaggerDocs = require('./api/v1/docs/swagger.js');
 const path = require("path");
 
 
